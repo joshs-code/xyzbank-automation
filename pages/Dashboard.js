@@ -16,7 +16,9 @@ exports.DashboardPage = class DashboardPage {
         await this.amountField.click()
         await this.amountField.fill(depositAmt)
         await this.depositSubmit.click()
-        await this.transactionBtn.click()
+    }
+
+    async logOut(){
         await this.logoutBtn.click()
     }
 }
