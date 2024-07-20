@@ -1,4 +1,4 @@
-exports.LoginPage = class LoginPage {
+export default class LoginPage {
 
     constructor(page) {
         this.page = page
@@ -10,7 +10,6 @@ exports.LoginPage = class LoginPage {
     async gotoSite(){
         await this.page.goto('https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login');
     }
-
 
     async loginUser(user) {
         await this.customerOption.click()

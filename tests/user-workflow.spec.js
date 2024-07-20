@@ -1,12 +1,23 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login';
-import { DashboardPage } from '../pages/dashboard';
+import { DashboardPage } from '../pages/Dashboard';
+import PomManager from '../pages/PomManager.js';
 
-test('test', async ({ page }) => {
-    const lp = new LoginPage(page)
-    const dp = new DashboardPage(page)
+let pm
 
-    await lp.gotoSite()
-    await lp.loginUser('2')
-    await dp.depositTransaction('1000000')
-});
+test.describe('Deposit Tests', async() => {
+    test.beforeEach(async ({page}) => {
+        pm = new PomManager(page)
+    })
+
+    test('Login as customer', async() => {
+        await pm.loginPage.gotoSite()
+        await pm.loginPage.loginUser('2')
+    })
+
+    test('Deposit Money',async() => {
+        await pm.loginPage.gotoSite()
+        await pm.loginPage.loginUser('2')
+        await pm.dashboardPage.depositTransaction('1000000')
+    })
+
+})
