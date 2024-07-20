@@ -3,14 +3,13 @@ import PomManager from '../pages/PomManager.js';
 
 let pm
 
-test.describe('Deposit Tests', async() => {
+test.describe('Money Tests', async() => {
     test.beforeEach(async ({page}) => {
         pm = new PomManager(page)
     })
 
-    test('Login as customer', async() => {
-        await pm.loginPage.gotoSite()
-        await pm.loginPage.loginUser('2')
+    test.afterEach(async ({page}) => {
+        await page.close()
     })
 
     test('Deposit Money',async({page}) => {
@@ -23,4 +22,26 @@ test.describe('Deposit Tests', async() => {
         await pm.dashboardPage.logOut();
     })
 
+})
+
+
+test.describe('Manager Tasks', async() => {
+    test.beforeEach(async ({page}) => {
+        pm = new PomManager(page)
+    })
+
+    test.afterEach(async ({page}) => {
+        await page.close()
+    })
+
+    test('Manager create user', async({page}) => {
+        await pm.loginPage.gotoSite()
+        await pm.loginPage.loginManager()
+        page.pause()
+
+        await pm.managerDashboard.clickAddCustomer()
+        await pm.managerDashboard.createCustomer('Joshua', 'A', '92595')
+        let tblCustomers = page.locator('//td[contains(text(), "Joshua")]')
+        await expect(tblCustomers).toContainText('Joshua')
+    })
 })

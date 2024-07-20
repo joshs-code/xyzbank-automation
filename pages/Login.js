@@ -5,6 +5,8 @@ export default class LoginPage {
         this.customerOption = page.getByRole('button', { name: 'Customer Login' })
         this.userSelect = page.locator('#userSelect')
         this.loginBtn = page.getByRole('button', { name: 'Login' })
+        this.managerBtnLogin = page.locator('//button[@ng-click="manager()"]')
+
     }
 
     async gotoSite(){
@@ -15,5 +17,9 @@ export default class LoginPage {
         await this.customerOption.click()
         await this.userSelect.selectOption(user)
         await this.loginBtn.click()
+    }
+
+    async loginManager(){
+        await this.managerBtnLogin.click()
     }
 }

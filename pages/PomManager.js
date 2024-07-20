@@ -1,5 +1,7 @@
 import LoginPage from "./Login"
-import { DashboardPage } from "./Dashboard"
+import  DashboardPage  from "./Dashboard"
+import  ManagerDashboardPage from "./ManagerDashboard"
+
 
 export default class PomManager {
 
@@ -7,5 +9,6 @@ export default class PomManager {
         this.page = page
         this.loginPage = new LoginPage(page)
         this.dashboardPage = new DashboardPage(page)
+        this.managerDashboard = new ManagerDashboardPage(page)
     }
 }

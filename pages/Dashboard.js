@@ -1,4 +1,4 @@
-exports.DashboardPage = class DashboardPage {
+export default class DashboardPage {
 
     constructor(page) {
         this.page = page
